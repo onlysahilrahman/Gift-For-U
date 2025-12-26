@@ -1,0 +1,120 @@
+:root {
+  --neon: #fd0000;
+  --neon-glow: rgb(255, 0, 0);
+  --bg: #0b0b0b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+  overflow: hidden;
+}
+
+/* CARD */
+.card-container {
+  position: relative;
+}
+
+.inner-container {
+  width: 350px;
+  height: 500px;
+  perspective: 1200px;
+  position: relative;
+}
+
+/* FRONT & BACK */
+.main-card,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  backface-visibility: hidden;
+  transition: transform 1s ease;
+}
+
+/* FRONT */
+.main-card {
+  border: 2px solid var(--neon);
+  box-shadow:
+    0 0 25px var(--neon-glow),
+    inset 0 0 25px var(--neon-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BACK */
+.card-back {
+  transform: rotateY(180deg);
+  overflow: hidden;
+}
+
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* FLIP */
+.flip-active .main-card {
+  transform: rotateY(180deg);
+}
+
+.flip-active .card-back {
+  transform: rotateY(360deg);
+}
+
+/* NEON BUTTON */
+.flip-btn {
+  padding: 16px 42px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(135deg, #ff0000, #ff0000);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: neonPulse 2s infinite ease-in-out;
+}
+
+/* NEON PULSE */
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 15px var(--neon);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 30px var(--neon),
+      0 0 60px var(--neon);
+    transform: scale(1.08);
+  }
+  100% {
+    box-shadow: 0 0 15px var(--neon);
+    transform: scale(1);
+  }
+}
+
+/* BACKGROUND GLOW */
+.card-container::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(circle, var(--neon), transparent 70%);
+  filter: blur(60px);
+  opacity: 0.35;
+  z-index: -1;
+}
