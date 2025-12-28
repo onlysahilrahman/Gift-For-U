@@ -7,5 +7,5 @@ btn.addEventListener('click', () => {
   setTimeout(() => {
     window.location.href =
       "https://www.effectivegatecpm.com/gykzahp34?key=7d4225f2e819c0b5950e4090b0b106e8";
-  }, 3000);
+  }, 2000);
 });
